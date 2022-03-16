@@ -1,13 +1,16 @@
 package com.devnoir.workshopmongo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.devnoir.workshopmongo.dto.AuthorDTO;
+import com.devnoir.workshopmongo.dto.CommentDTO;
 
 @Document
 public class Post implements Serializable {
@@ -22,7 +25,7 @@ public class Post implements Serializable {
 	
 	private AuthorDTO author;
 	
-	//private Set<Comment> comments = new HashSet<>();
+	private List<CommentDTO> comments = new ArrayList<>();
 	
 	public Post() {
 	}
@@ -75,9 +78,13 @@ public class Post implements Serializable {
 		this.author = author;
 	}
 	
-	/*public Set<Comment> getComments() {
+	public List<CommentDTO> getComments() {
 		return comments;
-	}*/
+	}
+
+	public void setComments(List<CommentDTO> comments) {
+		this.comments = comments;
+	}
 
 	@Override
 	public int hashCode() {
