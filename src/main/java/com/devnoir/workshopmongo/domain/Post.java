@@ -2,13 +2,17 @@ package com.devnoir.workshopmongo.domain;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Post implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Id
 	private String id;
 	private Date date;
 	private String title;
@@ -16,17 +20,17 @@ public class Post implements Serializable {
 	
 	private User author;
 	
-	private Set<Comment> comments = new HashSet<>();
+	//private Set<Comment> comments = new HashSet<>();
 	
 	public Post() {
 	}
 
-	public Post(String id, Date date, String title, String body, User user) {
+	public Post(String id, Date date, String title, String body, User author) {
 		this.id = id;
 		this.date = date;
 		this.title = title;
 		this.body = body;
-		this.author = user;
+		this.author = author;
 	}
 
 	public String getId() {
@@ -65,17 +69,17 @@ public class Post implements Serializable {
 		return author;
 	}
 
-	public void setUser(User user) {
-		this.author = user;
+	public void setUser(User author) {
+		this.author = author;
 	}
 
 	public User getAuthor() {
 		return author;
 	}
 	
-	public Set<Comment> getComments() {
+	/*public Set<Comment> getComments() {
 		return comments;
-	}
+	}*/
 
 	@Override
 	public int hashCode() {
